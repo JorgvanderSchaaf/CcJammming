@@ -23,7 +23,7 @@ class PlayList extends React.Component {
         <a className="Playlist-save" onClick={this.props.onSave}>SAVE TO SPOTIFY</a>
       </div>
 
-    )
+    );
   }
 };
 
