@@ -37,12 +37,15 @@ class App extends React.Component {
 
   addTrack(track) {
     let tracks = this.state.playlistTracks;
+    //checking if the track is already on playlist before adding to PlayList
+    //solves Git issue #1
+    if (tracks.find(savedTrack => savedTrack.id === track.id)) {
+      return;
+    }
+
     tracks.push(track);
     this.setState({playlistTracks: tracks});
 
-    //if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
-      //return;
-    //}
   }
 
   removeTrack(track) {
@@ -63,6 +66,8 @@ class App extends React.Component {
         playlistTracks: []
       });
     });
+    console.log(`the Track URIs: ${trackURIs}`);
+    console.log(`Playlist is saved`);
   }
 
   search(term) {
