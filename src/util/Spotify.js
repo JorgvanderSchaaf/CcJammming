@@ -1,4 +1,5 @@
-const clientId = <!--add Spotify App client ID-->;
+const clientId = '<add your client id here!>';
+//remove Spotify client id before uploading again to Git  
 const redirectUri = "http://localhost:3000/";
 
 
@@ -80,7 +81,7 @@ const Spotify = {
         }, networkError => console.log(networkError.message)
         ).then(jsonResponse => {
             const playlistID = jsonResponse.id;
-            // step 3:
+            // step 3: a fetch post to add tracks to the playlist using the unique track identifiers
             return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistID}/tracks`, {
               method: 'POST',
               body: JSON.stringify({URIs: trackURIs}),
@@ -88,13 +89,15 @@ const Spotify = {
               if (response.ok) {
                 return response.json();
                 }
-              throw new Error('Request failed!');
-              }, networkError => console.log(networkError.message)
-              ).then(jsonResponse => {
-              });
+
+              //throw new Error('Request failed!');
+            }, networkError => console.log(networkError.message)
+            ).then(jsonResponse => {
+            });
           });
 
         });
+
   }
 
 };
